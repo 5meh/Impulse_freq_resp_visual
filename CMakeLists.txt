@@ -9,29 +9,37 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
+find_package(OpenGL REQUIRED)
+
+find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
+    main.cpp
+    mainwindow.h
+    mainwindow.cpp
+    plotwidget.h
+    plotwidget.cpp
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 5)
-    add_executable(Impulse_freq_resp_visual
-        ${PROJECT_SOURCES}
-    )
-    set_target_properties(Impulse_freq_resp_visual PROPERTIES
-        WIN32_EXECUTABLE TRUE
-        MACOSX_BUNDLE TRUE
-    )
-endif()
+
+add_executable(Impulse_freq_resp_visual
+    ${PROJECT_SOURCES}
+)
+set_target_properties(Impulse_freq_resp_visual PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
+
 add_subdirectory(external/matplotplusplus)
-target_link_libraries(Impulse_freq_resp_visual PRIVATE matplot)
+target_link_libraries(Impulse_freq_resp_visual PRIVATE Qt${QT_VERSION_MAJOR}::Widgets matplot Qt5::OpenGL OpenGL::GL)
 
-
-target_link_libraries(Impulse_freq_resp_visual PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Impulse_freq_resp_visual PRIVATE
+    Qt5::Widgets
+    Qt5::OpenGL
+    OpenGL::GL
+    matplot
+)
 
 set_target_properties(Impulse_freq_resp_visual PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
