@@ -18,28 +18,18 @@ set(PROJECT_SOURCES
         mainwindow.h
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Impulse_freq_resp_visual
-        MANUAL_FINALIZATION
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 5)
+    add_executable(Impulse_freq_resp_visual
         ${PROJECT_SOURCES}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Impulse_freq_resp_visual APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(Impulse_freq_resp_visual SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(Impulse_freq_resp_visual
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    set_target_properties(Impulse_freq_resp_visual PROPERTIES
+        WIN32_EXECUTABLE TRUE
+        MACOSX_BUNDLE TRUE
+    )
 endif()
+add_subdirectory(external/matplotplusplus)
+target_link_libraries(Impulse_freq_resp_visual PRIVATE matplot)
+
 
 target_link_libraries(Impulse_freq_resp_visual PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
