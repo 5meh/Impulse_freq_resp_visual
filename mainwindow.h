@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+class WaterFallPlot;
 
 class MainWindow : public QMainWindow
 {
@@ -10,5 +11,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private:
+    QWidget* container;
+    WaterFallPlot* waterFallPlot;
 };
 #endif // MAINWINDOW_H

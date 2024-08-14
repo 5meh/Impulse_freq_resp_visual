@@ -1,7 +1,8 @@
 #include "mainwindow.h"
-#include "matplot/matplot.h"
-#include "plotwidget.h"
+#include "waterfallplot.h"
+#include <QtDataVisualization/Q3DSurface>
 #include <QVBoxLayout>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,9 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(centralWidget);
 
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    waterFallPlot = new WaterFallPlot();
 
-    PlotWidget *plotWidget = new PlotWidget(centralWidget);
-    layout->addWidget(plotWidget);
+    container = QWidget::createWindowContainer(waterFallPlot->getSurface());
+
+    //PlotWidget *plotWidget = new PlotWidget(centralWidget);
+    layout->addWidget(container);
 }
 
 MainWindow::~MainWindow()

@@ -9,36 +9,32 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
+add_subdirectory(external/matplotplusplus)
+#include_directories(${CMAKE_SOURCE_DIR}/external/matplotplusplus/source)
+#set(matplot_DIR external/matplotplusplus)
+#set(CMAKE_PREFIX_PATH "/external/matplot")
+
+
+find_package(Qt5 REQUIRED COMPONENTS Widgets OpenGL DataVisualization)
 find_package(OpenGL REQUIRED)
 
-find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
+#find_package(matplot REQUIRED)
+
 
 set(PROJECT_SOURCES
     main.cpp
-    mainwindow.h
+    waterfallplot.cpp
     mainwindow.cpp
-    plotwidget.h
     plotwidget.cpp
+
+    mainwindow.h
+    plotwidget.h
+    waterfallplot.h
 )
 
 
 add_executable(Impulse_freq_resp_visual
     ${PROJECT_SOURCES}
-)
-set_target_properties(Impulse_freq_resp_visual PROPERTIES
-    WIN32_EXECUTABLE TRUE
-    MACOSX_BUNDLE TRUE
-)
-
-add_subdirectory(external/matplotplusplus)
-target_link_libraries(Impulse_freq_resp_visual PRIVATE Qt${QT_VERSION_MAJOR}::Widgets matplot Qt5::OpenGL OpenGL::GL)
-
-target_link_libraries(Impulse_freq_resp_visual PRIVATE
-    Qt5::Widgets
-    Qt5::OpenGL
-    OpenGL::GL
-    matplot
 )
 
 set_target_properties(Impulse_freq_resp_visual PROPERTIES
@@ -49,10 +45,13 @@ set_target_properties(Impulse_freq_resp_visual PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+target_link_libraries(Impulse_freq_resp_visual PRIVATE
+    Qt5::Widgets
+    Qt5::OpenGL
+    Qt5::DataVisualization
+    OpenGL::GL
+)
+
 install(TARGETS Impulse_freq_resp_visual
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(Impulse_freq_resp_visual)
-endif()

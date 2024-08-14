@@ -1,6 +1,6 @@
-#include "plotwidget.h"
+//#include "plotwidget.h"
 
-PlotWidget::PlotWidget(QWidget *parent) : QOpenGLWidget(parent)
-{
+//PlotWidget::PlotWidget(QWidget *parent) : QOpenGLWidget(parent)
+//{
 
-}
+//}
