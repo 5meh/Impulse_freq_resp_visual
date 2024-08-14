@@ -12,6 +12,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
+    void creatActions();
+    void createMenus();
+    QMenu* openFiles;
+    QAction* openFiles;
+
     QWidget* container;
     WaterFallPlot* waterFallPlot;
 };
