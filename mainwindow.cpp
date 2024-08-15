@@ -4,7 +4,10 @@
 #include <QVBoxLayout>
 #include <QAction>
 #include <QMenu>
-
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QListView>
+#include <QTreeView>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,24 +20,44 @@ MainWindow::MainWindow(QWidget *parent)
 
     container = QWidget::createWindowContainer(waterFallPlot->getSurface());
     layout->addWidget(container);
+    createActions();
+    createMenus();
+    setGeometry(200,200,1000,600);
 }
 
 void MainWindow::openFiles()
 {
+    QFileDialog openFilesDlg(this);
+    openFilesDlg.setFileMode(QFileDialog::ExistingFiles);
+    openFilesDlg.setOption(QFileDialog::DontUseNativeDialog, true);
+    openFilesDlg.setOption(QFileDialog::ShowDirsOnly, false);
+    openFilesDlg.setDirectory(QDir::homePath());
+    QListView *view = openFilesDlg.findChild<QListView*>("listView");
+    if (view) {
+        view->setSelectionMode(QAbstractItemView::MultiSelection);
+    }
+    QTreeView *tree = openFilesDlg.findChild<QTreeView*>();
+    if (tree) {
+        tree->setSelectionMode(QAbstractItemView::MultiSelection);
+    }
 
+    if (openFilesDlg.exec()) {
+        QStringList selectedPaths = openFilesDlg.selectedFiles();
+        //label->setText(selectedPaths.join("\n")); // Отображаем выбранные пути
+    }
 }
 
-void MainWindow::creatActions()
+void MainWindow::createActions()
 {
-    openFiles = new QAction(tr("&Open files"), this);
-    openFiles->setStatusTip(tr("Open files with data."));
-    connect(openFiles, &QAction::triggered, this, &MainWindow::openFiles);
+    openFilesAct = new QAction(tr("&Open files"), this);
+    openFilesAct->setStatusTip(tr("Open files with data."));
+    connect(openFilesAct, &QAction::triggered, this, &MainWindow::openFiles);
 }
 
 void MainWindow::createMenus()
 {
-    fileMenu = menuBar()->addMenu(tr("&Open"));
-    fileMenu->addAction(openFiles);
+    openFilesMenu = menuBar()->addMenu(tr("&Open"));
+    openFilesMenu->addAction(openFilesAct);
 }
 
 MainWindow::~MainWindow()

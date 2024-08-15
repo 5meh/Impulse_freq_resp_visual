@@ -11,11 +11,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void openFiles();
 private:
-    void creatActions();
+    void createActions();
     void createMenus();
-    QMenu* openFiles;
-    QAction* openFiles;
+    QMenu* openFilesMenu;
+    QAction* openFilesAct;
 
     QWidget* container;
     WaterFallPlot* waterFallPlot;

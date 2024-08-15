@@ -26,10 +26,14 @@ set(PROJECT_SOURCES
     waterfallplot.cpp
     mainwindow.cpp
     plotwidget.cpp
+    algorithmtemplate.cpp
+    fftalgorithm.cpp
 
     mainwindow.h
     plotwidget.h
     waterfallplot.h
+    algorithmtemplate.h
+    fftalgorithm.h
 )
 
 
