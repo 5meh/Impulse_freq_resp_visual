@@ -20,21 +20,34 @@ find_package(OpenGL REQUIRED)
 
 #find_package(matplot REQUIRED)
 
-
-set(PROJECT_SOURCES
-    main.cpp
-    waterfallplot.cpp
-    mainwindow.cpp
-    plotwidget.cpp
-    algorithmtemplate.cpp
-    fftalgorithm.cpp
-
-    mainwindow.h
-    plotwidget.h
-    waterfallplot.h
-    algorithmtemplate.h
-    fftalgorithm.h
+file(GLOB_RECURSE PROJECT_SOURCES_CPP
+    "${CMAKE_SOURCE_DIR}/*.cpp"
+    "${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
+
+file(GLOB_RECURSE PROJECT_HEADERS
+    "${CMAKE_SOURCE_DIR}/*.h"
+    "${CMAKE_SOURCE_DIR}/FIleReader/*.h"
+)
+
+# Combine source and header files into one variable if needed
+set(PROJECT_SOURCES ${PROJECT_SOURCES_CPP} ${PROJECT_HEADERS})
+
+#TODO:remove plotwidget
+#set(PROJECT_SOURCES
+#    main.cpp
+#    waterfallplot.cpp
+#    mainwindow.cpp
+#    plotwidget.cpp
+#    algorithmtemplate.cpp
+#    fftalgorithm.cpp
+
+#    mainwindow.h
+#    plotwidget.h
+#    waterfallplot.h
+#    algorithmtemplate.h
+#    fftalgorithm.h
+#)
 
 
 add_executable(Impulse_freq_resp_visual
