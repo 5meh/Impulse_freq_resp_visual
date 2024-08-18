@@ -15,9 +15,6 @@ public:
     virtual ~IData() = default;
 private:
     DataSourceType dataSourceType_;
-    //Data data;
-    //Source source;
-    //MetaInfo dataMetaInfo;
 };
 
 #endif // IDATA_H

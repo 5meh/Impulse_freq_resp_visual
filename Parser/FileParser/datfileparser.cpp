@@ -1,7 +1,7 @@
 #include "datfileparser.h"
 #include <QDebug>
 
-std::vector<std::string> DatFileParser::parse(const QString& fullFilePath)
+std::vector<int> DatFileParser::parse(const QString& fullFilePath)
 {
     QFile file(fullFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -12,7 +12,7 @@ std::vector<std::string> DatFileParser::parse(const QString& fullFilePath)
     QTextStream in(&file);
     bool isFirstLine = true;
 
-    std::vector<std::string> parsedData;
+    std::vector<int> parsedData;
     while (!in.atEnd())
     {
         QString line = in.readLine();
@@ -21,7 +21,7 @@ std::vector<std::string> DatFileParser::parse(const QString& fullFilePath)
             isFirstLine = false;
             continue;
         }
-        parsedData.push_back(line.toStdString());
+        parsedData.push_back(line.toInt());
         qDebug() << line;
     }
 
