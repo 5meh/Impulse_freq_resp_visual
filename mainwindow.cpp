@@ -45,6 +45,7 @@ void MainWindow::openFiles()
         QStringList selectedPaths = openFilesDlg.selectedFiles();
         //label->setText(selectedPaths.join("\n")); // Отображаем выбранные пути
     }
+
 }
 
 void MainWindow::createActions()

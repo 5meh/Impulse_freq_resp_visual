@@ -6,7 +6,7 @@ class IParser
 {
 public:
     virtual ~IParser() = default;
-    virtual ReturnType parse(const ArgType& data) = 0;
+    virtual ReturnType parse(const ArgType& resourceLocation) = 0;
 };
 
 #endif // IPARSER_H

@@ -5,11 +5,11 @@
 #include <string>
 #include <QFile>
 
-class DatFileParser: public FileParser<std::vector<std::string>, QFile>
+class DatFileParser: public FileParser<std::vector<std::string>>
 {
 public:
     ~DatFileParser();
-    std::vector<std::string> parse(const QFile& file)override;
+    std::vector<std::string> parse(const QString& fullFilePath)override;
 };
 
 #endif // DATFILEPARSER_H

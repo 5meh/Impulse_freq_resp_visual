@@ -1,16 +1,13 @@
 #include "datfileparser.h"
+#include <QDebug>
 
-DatFileParser::DatFileParser()
+std::vector<std::string> DatFileParser::parse(const QString& fullFilePath)
 {
-
-}
-
-std::vector<std::string> DatFileParser::parse(const QFile& file)
-{
+    QFile file(fullFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "Cannot open file for reading:" << file.errorString();
-        return;
+        //return;//TODO: add error processing
     }
     QTextStream in(&file);
     bool isFirstLine = true;
@@ -24,9 +21,10 @@ std::vector<std::string> DatFileParser::parse(const QFile& file)
             isFirstLine = false;
             continue;
         }
-        parsedData.push_back(line);
+        parsedData.push_back(line.toStdString());
         qDebug() << line;
     }
 
     file.close();
+    return parsedData;
 }

@@ -5,11 +5,11 @@
 #include <QFile>
 
 template<typename ReturnType>
-class FileParser: public IParser<ReturnType, QFile>
+class FileParser: public IParser<ReturnType, QString>
 {
 public:
     ~FileParser() = default;
-    virtual ReturnType parse(const QFile& file) = 0;
+    virtual ReturnType parse(const QString& fullFilePath) = 0;
 
 };
 
