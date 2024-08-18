@@ -7,12 +7,12 @@ template<typename Data, typename Source, typename MetaInfo>//TODO: mb unite data
 class IData
 {
 public:
-    IData(DataSourceType dataSourceType);
-    DataSourceType getSourceType()const;
+    IData(DataSourceType dataSourceType):dataSourceType_(dataSourceType){}
+    DataSourceType getSourceType()const{ return dataSourceType_; }
     virtual Data getData()const = 0;
     virtual const Source& getSource()const = 0;
     virtual MetaInfo getDataMetaInfo()const = 0;
-    virtual ~IData() = 0;
+    virtual ~IData() = default;
 private:
     DataSourceType dataSourceType_;
     //Data data;
