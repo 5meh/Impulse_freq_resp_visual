@@ -1,11 +1,11 @@
-#ifndef ALGORITHMTEMPLATE_H
-#define ALGORITHMTEMPLATE_H
+#ifndef IALGORITHM_H
+#define IALGORITHM_H
 
 template<typename RetType, typename... Args>
-class AlgorithmTemplate
+class IAlgorithm
 {
 public:
-    virtual ~AlgorithmTemplate() = default;
+    virtual ~IAlgorithm() = default;
     RetType execute(Args... args) {
         return process(args...);
     }
@@ -13,4 +13,4 @@ protected:
     virtual RetType process(Args... args) = 0;
 };
 
-#endif // ALGORITHMTEMPLATE_H
+#endif // IALGORITHM_H

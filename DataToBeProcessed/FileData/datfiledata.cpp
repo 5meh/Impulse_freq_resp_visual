@@ -1,6 +1,8 @@
 #include "datfiledata.h"
 
-DatFileData::DatFileData(DataSourceType sourceType, QFile& file, std::vector<int> data):FileData(sourceType, file),data_(data)
+DatFileData::DatFileData(DataSourceType sourceType, QString& filePath, std::vector<int> data):
+    FileData(sourceType, filePath),
+    data_(data)
 {
 
 }

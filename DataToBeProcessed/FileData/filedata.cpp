@@ -1,9 +1,9 @@
 #include "filedata.h"
 
 template<typename Data>
-FileData<Data>::FileData(DataSourceType sourceType, QFile& file):
+FileData<Data>::FileData(DataSourceType sourceType, QString& filePath):
     IData<Data, QFile, QFileInfo>(sourceType),
-    file_(file.fileName()),
+    file_(filePath),
     fileMetaInfo_(file_)
 {
 

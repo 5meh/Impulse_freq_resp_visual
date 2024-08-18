@@ -8,7 +8,7 @@ template<typename Data>
 class FileData: public IData<Data, QFile, QFileInfo>
 {
 public:
-    FileData(DataSourceType sourceType, QFile& file);
+    FileData(DataSourceType sourceType, QString& filePath);
     const QFile& getSource()const override;
     QFileInfo getDataMetaInfo()const override;
 private:

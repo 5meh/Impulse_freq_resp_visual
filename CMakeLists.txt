@@ -9,6 +9,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+#set(FFTW_DIR "/usr/local/lib/cmake/fftw3")
+#set(CMAKE_PREFIX_PATH "/usr/local/")
+#list(APPEND CMAKE_PREFIX_PATH "/usr/local/")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+
 add_subdirectory(external/matplotplusplus)
 #include_directories(${CMAKE_SOURCE_DIR}/external/matplotplusplus/source)
 #set(matplot_DIR external/matplotplusplus)
@@ -17,6 +23,9 @@ add_subdirectory(external/matplotplusplus)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets OpenGL DataVisualization)
 find_package(OpenGL REQUIRED)
+find_package(FFTW REQUIRED)
+
+include_directories(${FFTW3_INCLUDE_DIR})
 
 #find_package(matplot REQUIRED)
 
@@ -25,8 +34,9 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
     ${CMAKE_SOURCE_DIR}/mainwindow.cpp
     ${CMAKE_SOURCE_DIR}/plotwidget.cpp
     ${CMAKE_SOURCE_DIR}/waterfallplot.cpp
-    ${CMAKE_SOURCE_DIR}/fftalgorithm.cpp
-    ${CMAKE_SOURCE_DIR}/algorithmtemplate.cpp
+    ${CMAKE_SOURCE_DIR}/Algorithms/ialgorithm.cpp#TODO:mb delete later
+    ${CMAKE_SOURCE_DIR}/Algorithms/fftalgorithm.cpp
+    #${CMAKE_SOURCE_DIR}/algorithmtemplate.cpp
     #${CMAKE_SOURCE_DIR}/Parser/parser.cpp uncoment if we need cpp file
     ${CMAKE_SOURCE_DIR}/Parser/FileParser/datfileparser.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/idata.cpp
@@ -37,8 +47,9 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
 )
 
 file(GLOB_RECURSE PROJECT_HEADERS  
-    ${CMAKE_SOURCE_DIR}/algorithmtemplate.h
-    ${CMAKE_SOURCE_DIR}/fftalgorithm.h
+    #${CMAKE_SOURCE_DIR}/algorithmtemplate.h
+    ${CMAKE_SOURCE_DIR}/Algorithms/ialgorithm.h
+    ${CMAKE_SOURCE_DIR}/Algorithms/fftalgorithm.h
     ${CMAKE_SOURCE_DIR}/mainwindow.h
     ${CMAKE_SOURCE_DIR}/plotwidget.h
     ${CMAKE_SOURCE_DIR}/waterfallplot.h
@@ -96,6 +107,7 @@ target_link_libraries(Impulse_freq_resp_visual PRIVATE
     Qt5::OpenGL
     Qt5::DataVisualization
     OpenGL::GL
+    ${FFTW3_LIBRARIES}
 )
 
 install(TARGETS Impulse_freq_resp_visual

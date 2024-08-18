@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     container = QWidget::createWindowContainer(waterFallPlot->getSurface());
     layout->addWidget(container);
+    container->hide();
     createActions();
     createMenus();
     setGeometry(200,200,1000,600);
@@ -33,15 +34,18 @@ void MainWindow::openFiles()
     openFilesDlg.setOption(QFileDialog::ShowDirsOnly, false);
     openFilesDlg.setDirectory(QDir::homePath());
     QListView *view = openFilesDlg.findChild<QListView*>("listView");
-    if (view) {
+    if (view)
+    {
         view->setSelectionMode(QAbstractItemView::MultiSelection);
     }
     QTreeView *tree = openFilesDlg.findChild<QTreeView*>();
-    if (tree) {
+    if (tree)
+    {
         tree->setSelectionMode(QAbstractItemView::MultiSelection);
     }
 
-    if (openFilesDlg.exec()) {
+    if (openFilesDlg.exec())
+    {
         QStringList selectedPaths = openFilesDlg.selectedFiles();
         //label->setText(selectedPaths.join("\n")); // Отображаем выбранные пути
     }
