@@ -5,8 +5,8 @@
 class DatFileReader: public FileReader<int>
 {
 public:
-    void readData(const QString& filePath) = 0;
-    virtual std::vector<int> getData()const = 0;
+    void readData(const QString& filePath);
+    std::vector<int> getData()const;
 private:
     std::vector<int> data;
 };

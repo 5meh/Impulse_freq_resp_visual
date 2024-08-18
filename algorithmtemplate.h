@@ -7,7 +7,7 @@ class AlgorithmTemplate
 public:
     virtual ~AlgorithmTemplate() = default;
     RetType execute(Args... args) {
-        return process(args);
+        return process(args...);
     }
 protected:
     virtual RetType process(Args... args) = 0;

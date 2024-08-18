@@ -9,7 +9,7 @@ void DatFileReader::readData(const QString& filePath)
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        qDebug() << "Cannot open file for reading: " << file.errorString();
+        qDebug() << "Cannot open file for reading: " << file.errorString();//TODO:replace by dialog box
     }
 
     QTextStream in(&file);
@@ -24,14 +24,14 @@ void DatFileReader::readData(const QString& filePath)
         }
         else
         {
-            qDebug() << "Failed to convert line to integer:" << line;
+            qDebug() << "Failed to convert line to integer:" << line;//TODO:replace by dialog box
         }
     }
 
     file.close();
 }
 
-std::vector<int> DatFileReader::getData()
+std::vector<int> DatFileReader::getData()const
 {
     return data;
 }

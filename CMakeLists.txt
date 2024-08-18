@@ -21,15 +21,42 @@ find_package(OpenGL REQUIRED)
 #find_package(matplot REQUIRED)
 
 file(GLOB_RECURSE PROJECT_SOURCES_CPP
-    "${CMAKE_SOURCE_DIR}/*.cpp"
-    "${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
+    ${CMAKE_SOURCE_DIR}/main.cpp
+    ${CMAKE_SOURCE_DIR}/mainwindow.cpp
+    ${CMAKE_SOURCE_DIR}/plotwidget.cpp
+    ${CMAKE_SOURCE_DIR}/waterfallplot.cpp
+    ${CMAKE_SOURCE_DIR}/fftalgorithm.cpp
+    ${CMAKE_SOURCE_DIR}/algorithmtemplate.cpp
+    #${CMAKE_SOURCE_DIR}/Parser/parser.cpp uncoment if we need cpp file
+    #${CMAKE_SOURCE_DIR}/FileReader/filereader.cpp
+    ${CMAKE_SOURCE_DIR}/FileReader/datfilereader.cpp
+    ${CMAKE_SOURCE_DIR}/datatoproceed.cpp
+    ${CMAKE_SOURCE_DIR}/Parser/FileParser/datfileparser.cpp
+    #"${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
 
-file(GLOB_RECURSE PROJECT_HEADERS
-    "${CMAKE_SOURCE_DIR}/*.h"
-    "${CMAKE_SOURCE_DIR}/FIleReader/*.h"
+file(GLOB_RECURSE PROJECT_HEADERS  
+    ${CMAKE_SOURCE_DIR}/algorithmtemplate.h
+    ${CMAKE_SOURCE_DIR}/fftalgorithm.h
+    ${CMAKE_SOURCE_DIR}/mainwindow.h
+    ${CMAKE_SOURCE_DIR}/plotwidget.h
+    ${CMAKE_SOURCE_DIR}/waterfallplot.h
+    ${CMAKE_SOURCE_DIR}/FileReader/datfilereader.h
+    ${CMAKE_SOURCE_DIR}/FileReader/filereader.h
+    ${CMAKE_SOURCE_DIR}/datatoproceed.h
+    ${CMAKE_SOURCE_DIR}/Parser/iparser.h
+    ${CMAKE_SOURCE_DIR}/Parser/FileParser/filereader.h
+    ${CMAKE_SOURCE_DIR}/Parser/FileParser/fileparser.h
+    ${CMAKE_SOURCE_DIR}/Parser/FileParser/datfileparser.h
+
+    #"${CMAKE_SOURCE_DIR}/*.h"
+    #"${CMAKE_SOURCE_DIR}/FIleReader/*.h"
 )
 
+list(FILTER PROJECT_SOURCES_CPP EXCLUDE REGEX ".*external/")
+
+# Alternatively, you can exclude the entire directory
+list(FILTER PROJECT_SOURCES_CPP EXCLUDE REGEX ".*external/matplotplusplus/test/integration/.*")
 # Combine source and header files into one variable if needed
 set(PROJECT_SOURCES ${PROJECT_SOURCES_CPP} ${PROJECT_HEADERS})
 
