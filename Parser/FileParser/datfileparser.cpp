@@ -12,7 +12,7 @@ std::vector<int> DatFileParser::parse(const QString& fullFilePath)
     QTextStream in(&file);
     bool isFirstLine = true;
 
-    std::vector<int> parsedData;
+    std::vector<double> parsedData;
     while (!in.atEnd())
     {
         QString line = in.readLine();
@@ -21,7 +21,7 @@ std::vector<int> DatFileParser::parse(const QString& fullFilePath)
             isFirstLine = false;
             continue;
         }
-        parsedData.push_back(line.toInt());
+        parsedData.push_back(line.toDouble());
         qDebug() << line;
     }
 

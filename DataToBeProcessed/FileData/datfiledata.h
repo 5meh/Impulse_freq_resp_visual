@@ -7,10 +7,10 @@
 class DatFileData: public FileData<std::vector<int>>
 {
 public:
-    DatFileData(DataSourceType sourceType, QString& filePath, std::vector<int> data);
-    std::vector<int> getData()const override;
+    DatFileData(DataSourceType sourceType, QString& filePath, std::vector<double> data);
+    std::vector<double> getData()const override;
 private:
-    std::vector<int> data_;
+    std::vector<double> data_;
 };
 
 #endif // DATFILEDATA_H

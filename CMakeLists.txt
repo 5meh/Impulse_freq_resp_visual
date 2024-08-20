@@ -39,10 +39,11 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
     #${CMAKE_SOURCE_DIR}/algorithmtemplate.cpp
     #${CMAKE_SOURCE_DIR}/Parser/parser.cpp uncoment if we need cpp file
     ${CMAKE_SOURCE_DIR}/Parser/FileParser/datfileparser.cpp
-    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/idata.cpp
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/idata.cpp#TODO:remove later
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datasourcetype.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.cpp
+    ${CMAKE_SOURCE_DIR}/datamanager.cpp
     #"${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
 
@@ -51,6 +52,7 @@ file(GLOB_RECURSE PROJECT_HEADERS
     ${CMAKE_SOURCE_DIR}/Algorithms/ialgorithm.h
     ${CMAKE_SOURCE_DIR}/Algorithms/fftalgorithm.h
     ${CMAKE_SOURCE_DIR}/mainwindow.h
+    ${CMAKE_SOURCE_DIR}/datamanager.h
     ${CMAKE_SOURCE_DIR}/plotwidget.h
     ${CMAKE_SOURCE_DIR}/waterfallplot.h
     ${CMAKE_SOURCE_DIR}/Parser/iparser.h

@@ -9,7 +9,7 @@ class DatFileParser: public FileParser<std::vector<int>>
 {
 public:
     ~DatFileParser() = default;
-    std::vector<int> parse(const QString& fullFilePath)override;
+    std::vector<double> parse(const QString& fullFilePath)override;
 };
 
 #endif // DATFILEPARSER_H

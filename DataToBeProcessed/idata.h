@@ -8,11 +8,12 @@ class IData
 {
 public:
     IData(DataSourceType dataSourceType):dataSourceType_(dataSourceType){}
+    virtual ~IData() = default;
+
     DataSourceType getSourceType()const{ return dataSourceType_; }
     virtual Data getData()const = 0;
     virtual const Source& getSource()const = 0;
     virtual MetaInfo getDataMetaInfo()const = 0;
-    virtual ~IData() = default;
 private:
     DataSourceType dataSourceType_;
 };
