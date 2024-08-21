@@ -6,7 +6,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
@@ -47,7 +47,7 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datasourcetype.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.cpp
-    ${CMAKE_SOURCE_DIR}/datamanager.cpp
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datamanager.cpp
     ${CMAKE_SOURCE_DIR}/UIComponents/ampenvelspectrumwidget.cpp
     #"${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
@@ -57,7 +57,7 @@ file(GLOB_RECURSE PROJECT_HEADERS
     ${CMAKE_SOURCE_DIR}/Algorithms/ialgorithm.h
     ${CMAKE_SOURCE_DIR}/Algorithms/fftalgorithm.h
     ${CMAKE_SOURCE_DIR}/mainwindow.h
-    ${CMAKE_SOURCE_DIR}/datamanager.h
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datamanager.h
     ${CMAKE_SOURCE_DIR}/plotwidget.h
     ${CMAKE_SOURCE_DIR}/waterfallplot.h
     ${CMAKE_SOURCE_DIR}/Parser/iparser.h

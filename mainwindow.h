@@ -8,6 +8,12 @@ class QTabWidget;
 class QMenu;
 class QAction;
 
+#include "Parser/iparser.h"
+#include "Algorithms/ialgorithm.h"
+class DataManager;
+//class IAlgorithm;
+//class IParser;
+
 
 class MainWindow : public QMainWindow
 {
@@ -25,9 +31,10 @@ private:
     QMenu* openFilesMenu;
     QAction* openFilesAct;
 
-    //QWidget* container;
     QTabWidget* tabs;
     AmpEnvelSpectrumWIdget* ampEnvelScetr;
-    //WaterFallPlot* waterFallPlot;
+    DataManager* dataManager;
+    //IAlgorithm* algorithm;
+    //IParser* parser;
 };
 #endif // MAINWINDOW_H

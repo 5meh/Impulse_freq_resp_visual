@@ -5,7 +5,7 @@
 
 class DataSourceType
 {
-private:
+public:
     enum class SourceType {
         File,
         Database,

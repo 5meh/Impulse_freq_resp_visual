@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 #include "waterfallplot.h"
 #include "UIComponents/ampenvelspectrumwidget.h"
+#include "Parser/iparser.h"
+#include "Parser/FileParser/datfileparser.h"
+#include "DataToBeProcessed/datamanager.h"
+#include "Algorithms/ialgorithm.h"
+#include "DataToBeProcessed/FileData/datfiledata.h"
 #include <QtDataVisualization/Q3DSurface>
 #include <QVBoxLayout>
 #include <QAction>
@@ -21,13 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(tabs);
 
     tabs->addTab(ampEnvelScetr,"Envelope");
-    //layout()->addWidget(tabs);
     tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     createActions();
     createMenus();
     setGeometry(200,200,1000,600);
-    //updateGeometry();
-    //centralWidget()->updateGeometry();
+    tabs->hide();
+    dataManager = new DataManager(this);//TODO:should i pass this here
 }
 
 void MainWindow::openFiles()
@@ -51,8 +55,15 @@ void MainWindow::openFiles()
     if (openFilesDlg.exec())
     {
         QStringList selectedPaths = openFilesDlg.selectedFiles();
-        //label->setText(selectedPaths.join("\n")); // Отображаем выбранные пути
+        for(QString filePath: selectedPaths)
+        {
+            auto parsedData = DatFileParser().parse(filePath);
+            auto datFileData = std::make_unique<DatFileData>(DataSourceType::SourceType::File, filePath, std::move(parsedData));
+            dataManager->addDatFile(std::move(datFileData));
+        }
     }
+
+
 }
 
 void MainWindow::createActions()
