@@ -11,6 +11,9 @@ public:
 
 signals:
 
+private:
+
+
 };
 
 #endif // DATAMANAGER_H

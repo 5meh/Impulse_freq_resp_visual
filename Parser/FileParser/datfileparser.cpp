@@ -1,7 +1,7 @@
 #include "datfileparser.h"
 #include <QDebug>
 
-std::vector<int> DatFileParser::parse(const QString& fullFilePath)
+std::vector<double> DatFileParser::parse(const QString& fullFilePath)
 {
     QFile file(fullFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

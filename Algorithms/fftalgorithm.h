@@ -1,10 +1,11 @@
 #ifndef FFTALGORITHM_H
 #define FFTALGORITHM_H
 
-#include "ialgorithm.h"\
+#include "ialgorithm.h"
 #include <vector>
+#include <complex>
 
-class FFTAlgorithm: public IAlgorithm<std::vector<double>, std::vector<double>>
+class FFTAlgorithm: public IAlgorithm<void, std::vector<std::complex<double>>&, bool>
 {
 public:
     FFTAlgorithm() = default;

@@ -16,11 +16,12 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(centralWidget);
 
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
-    waterFallPlot = new WaterFallPlot();
-
-    container = QWidget::createWindowContainer(waterFallPlot->getSurface());
-    layout->addWidget(container);
-    container->hide();
+    //waterFallPlot = new WaterFallPlot();
+    tabs = new QTabWidget(this);
+    //container = QWidget::createWindowContainer(waterFallPlot->getSurface());
+    layout->addWidget(tabs);
+    //layout->addWidget(container);
+    //container->hide();
     createActions();
     createMenus();
     setGeometry(200,200,1000,600);
@@ -49,7 +50,6 @@ void MainWindow::openFiles()
         QStringList selectedPaths = openFilesDlg.selectedFiles();
         //label->setText(selectedPaths.join("\n")); // Отображаем выбранные пути
     }
-
 }
 
 void MainWindow::createActions()

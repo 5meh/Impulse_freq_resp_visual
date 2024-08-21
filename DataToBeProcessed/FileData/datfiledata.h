@@ -4,7 +4,7 @@
 #include "filedata.h"
 #include <vector>
 
-class DatFileData: public FileData<std::vector<int>>
+class DatFileData: public FileData<std::vector<double>>
 {
 public:
     DatFileData(DataSourceType sourceType, QString& filePath, std::vector<double> data);

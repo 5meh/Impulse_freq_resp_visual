@@ -5,7 +5,7 @@
 #include <string>
 #include <QFile>
 
-class DatFileParser: public FileParser<std::vector<int>>
+class DatFileParser: public FileParser<std::vector<double>>
 {
 public:
     ~DatFileParser() = default;

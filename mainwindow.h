@@ -16,10 +16,12 @@ private slots:
 private:
     void createActions();
     void createMenus();
+
     QMenu* openFilesMenu;
     QAction* openFilesAct;
 
     QWidget* container;
+    QTabWidget* tabs;
     WaterFallPlot* waterFallPlot;
 };
 #endif // MAINWINDOW_H

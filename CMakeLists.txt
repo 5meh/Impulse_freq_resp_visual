@@ -6,7 +6,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #set(FFTW_DIR "/usr/local/lib/cmake/fftw3")
@@ -21,7 +21,7 @@ add_subdirectory(external/matplotplusplus)
 #set(CMAKE_PREFIX_PATH "/external/matplot")
 
 
-find_package(Qt5 REQUIRED COMPONENTS Widgets OpenGL DataVisualization)
+find_package(Qt5 REQUIRED COMPONENTS Widgets OpenGL DataVisualization Charts)
 find_package(OpenGL REQUIRED)
 find_package(FFTW REQUIRED)
 
@@ -44,6 +44,7 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.cpp
     ${CMAKE_SOURCE_DIR}/datamanager.cpp
+    ${CMAKE_SOURCE_DIR}/UIComponents/ampenvelspectrumwidget.cpp
     #"${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
 
@@ -63,6 +64,8 @@ file(GLOB_RECURSE PROJECT_HEADERS
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datasourcetype.h
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.h
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.h
+
+    ${CMAKE_SOURCE_DIR}/UIComponents/ampenvelspectrumwidget.h
 
     #"${CMAKE_SOURCE_DIR}/*.h"
     #"${CMAKE_SOURCE_DIR}/FIleReader/*.h"
@@ -110,6 +113,7 @@ target_link_libraries(Impulse_freq_resp_visual PRIVATE
     Qt5::DataVisualization
     OpenGL::GL
     ${FFTW3_LIBRARIES}
+    Qt5::Charts
 )
 
 install(TARGETS Impulse_freq_resp_visual

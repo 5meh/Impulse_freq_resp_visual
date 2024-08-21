@@ -21,4 +21,4 @@ QFileInfo FileData<Data>::getDataMetaInfo()const
     return fileMetaInfo_;
 }
 
-template class FileData<std::vector<int>>;
+template class FileData<std::vector<double>>;//TODO:check later

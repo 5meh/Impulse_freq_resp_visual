@@ -1,6 +1,6 @@
 #include "fftalgorithm.h"
 
-void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse = false)
+void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse)
 {
     int n = data.size();
     int logN = std::log2(n);
@@ -50,5 +50,5 @@ void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse
             data[i] /= n;
         }
     }
-    return args;
+    //return args;
 }
