@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 class WaterFallPlot;
+class AmpEnvelSpectrumWIdget;
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +23,7 @@ private:
 
     QWidget* container;
     QTabWidget* tabs;
+    AmpEnvelSpectrumWIdget* ampEnvelScetr;
     WaterFallPlot* waterFallPlot;
 };
 #endif // MAINWINDOW_H

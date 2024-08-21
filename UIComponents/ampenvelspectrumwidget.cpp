@@ -2,6 +2,7 @@
 
 #include <QLayout>
 #include <QLabel>
+#include <QSpacerItem>
 #include <QComboBox>
 
 AmpEnvelSpectrumWIdget::AmpEnvelSpectrumWIdget(QWidget *parent)
@@ -22,9 +23,13 @@ AmpEnvelSpectrumWIdget::AmpEnvelSpectrumWIdget(QWidget *parent)
 
     chartLayout->addWidget(chartCapLbl);
     chartLayout->addWidget(chartView);
+    chartLayout->setStretch(0,1);
+    chartLayout->setStretch(0,5);
 
     comboLayout->addWidget(comboLbl);
     comboLayout->addWidget(filesCmb);
+    comboLayout->addItem(new QSpacerItem(40,40,QSizePolicy::Expanding,QSizePolicy::Minimum));
+
 
     setLayout(new QHBoxLayout(this));
     layout()->addItem(chartLayout);

@@ -24,6 +24,8 @@ add_subdirectory(external/matplotplusplus)
 find_package(Qt5 REQUIRED COMPONENTS Widgets OpenGL DataVisualization Charts)
 find_package(OpenGL REQUIRED)
 find_package(FFTW REQUIRED)
+find_package(BLAS REQUIRED)
+find_package(LAPACK REQUIRED)
 
 include_directories(${FFTW3_INCLUDE_DIR})
 
@@ -114,6 +116,8 @@ target_link_libraries(Impulse_freq_resp_visual PRIVATE
     OpenGL::GL
     ${FFTW3_LIBRARIES}
     Qt5::Charts
+    ${BLAS_LIBRARIES}
+    ${LAPACK_LIBRARIES}
 )
 
 install(TARGETS Impulse_freq_resp_visual

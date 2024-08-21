@@ -8,18 +8,21 @@
 #include <QFileDialog>
 #include <QListView>
 #include <QTreeView>
+#include "UIComponents/ampenvelspectrumwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent),
+      tabs{new QTabWidget(this)},
+      ampEnvelScetr{new AmpEnvelSpectrumWIdget(tabs)}
 {
-    QWidget *centralWidget = new QWidget(this);
-    setCentralWidget(centralWidget);
-
-    QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    //QWidget *centralWidget = new QWidget(this);
+    setCentralWidget(tabs);
+    //setLayout(new QVBoxLayout(this));
+    //QVBoxLayout *layout = new QVBoxLayout(tabs);
     //waterFallPlot = new WaterFallPlot();
-    tabs = new QTabWidget(this);
     //container = QWidget::createWindowContainer(waterFallPlot->getSurface());
-    layout->addWidget(tabs);
+    //layout()->addWidget(tabs);
+    tabs->addTab(ampEnvelScetr,"Envelope");
     //layout->addWidget(container);
     //container->hide();
     createActions();
