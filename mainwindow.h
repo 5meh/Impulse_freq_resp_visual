@@ -2,8 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-class WaterFallPlot;
+//class WaterFallPlot;
 class AmpEnvelSpectrumWIdget;
+class QTabWidget;
+class QMenu;
+class QAction;
+
 
 class MainWindow : public QMainWindow
 {
@@ -21,9 +25,9 @@ private:
     QMenu* openFilesMenu;
     QAction* openFilesAct;
 
-    QWidget* container;
+    //QWidget* container;
     QTabWidget* tabs;
     AmpEnvelSpectrumWIdget* ampEnvelScetr;
-    WaterFallPlot* waterFallPlot;
+    //WaterFallPlot* waterFallPlot;
 };
 #endif // MAINWINDOW_H

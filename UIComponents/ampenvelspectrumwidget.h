@@ -11,6 +11,7 @@
 QT_FORWARD_DECLARE_CLASS(QVBoxLayout)
 QT_FORWARD_DECLARE_CLASS(QLabel)
 QT_FORWARD_DECLARE_CLASS(QComboBox)
+QT_FORWARD_DECLARE_CLASS(QHBoxLayout)
 
 class AmpEnvelSpectrumWIdget : public QWidget
 {
@@ -29,6 +30,7 @@ private:
 
     QVBoxLayout* chartLayout;
     QVBoxLayout* comboLayout;
+    QHBoxLayout* mainLayout;
 
     QLabel* chartCapLbl;
     QLabel* comboLbl;

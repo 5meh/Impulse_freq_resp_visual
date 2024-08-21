@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "waterfallplot.h"
+#include "UIComponents/ampenvelspectrumwidget.h"
 #include <QtDataVisualization/Q3DSurface>
 #include <QVBoxLayout>
 #include <QAction>
@@ -7,27 +8,26 @@
 #include <QMenuBar>
 #include <QFileDialog>
 #include <QListView>
+#include <QTableWidget>
 #include <QTreeView>
-#include "UIComponents/ampenvelspectrumwidget.h"
+#include <QDebug>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      tabs{new QTabWidget(this)},
-      ampEnvelScetr{new AmpEnvelSpectrumWIdget(tabs)}
+      tabs(new QTabWidget(this)),
+      ampEnvelScetr(new AmpEnvelSpectrumWIdget(tabs))
 {
-    //QWidget *centralWidget = new QWidget(this);
     setCentralWidget(tabs);
-    //setLayout(new QVBoxLayout(this));
-    //QVBoxLayout *layout = new QVBoxLayout(tabs);
-    //waterFallPlot = new WaterFallPlot();
-    //container = QWidget::createWindowContainer(waterFallPlot->getSurface());
-    //layout()->addWidget(tabs);
+
     tabs->addTab(ampEnvelScetr,"Envelope");
-    //layout->addWidget(container);
-    //container->hide();
+    //layout()->addWidget(tabs);
+    tabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     createActions();
     createMenus();
     setGeometry(200,200,1000,600);
+    //updateGeometry();
+    //centralWidget()->updateGeometry();
 }
 
 void MainWindow::openFiles()

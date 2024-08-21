@@ -6,12 +6,13 @@
 #include <QComboBox>
 
 AmpEnvelSpectrumWIdget::AmpEnvelSpectrumWIdget(QWidget *parent)
-    : QWidget{parent},
+    : QWidget(parent),
       chart{new QtCharts::QChart()},
       chartView{new QtCharts::QChartView(chart, this)},
-      series{new QtCharts::QLineSeries(this)},
-      chartLayout{new QVBoxLayout(this)},
-      comboLayout{new QVBoxLayout(this)},
+      series{new QtCharts::QLineSeries()},
+      chartLayout{new QVBoxLayout()},
+      comboLayout{new QVBoxLayout()},
+      mainLayout{new QHBoxLayout(this)},
       comboLbl{new QLabel(this)},
       chartCapLbl{new QLabel(this)},
       filesCmb{new QComboBox(this)}
@@ -24,16 +25,20 @@ AmpEnvelSpectrumWIdget::AmpEnvelSpectrumWIdget(QWidget *parent)
     chartLayout->addWidget(chartCapLbl);
     chartLayout->addWidget(chartView);
     chartLayout->setStretch(0,1);
-    chartLayout->setStretch(0,5);
+    chartLayout->setStretch(1,5);
 
     comboLayout->addWidget(comboLbl);
     comboLayout->addWidget(filesCmb);
     comboLayout->addItem(new QSpacerItem(40,40,QSizePolicy::Expanding,QSizePolicy::Minimum));
 
 
-    setLayout(new QHBoxLayout(this));
-    layout()->addItem(chartLayout);
-    layout()->addItem(comboLayout);
+    mainLayout->addLayout(chartLayout);
+    mainLayout->addLayout(comboLayout);
+
+    //layout()->addItem(chartLayout);
+    //layout()->addItem(comboLayout);
+
+    setLayout(mainLayout);
 }
 
 AmpEnvelSpectrumWIdget::~AmpEnvelSpectrumWIdget()

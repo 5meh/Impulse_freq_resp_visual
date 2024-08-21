@@ -9,6 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+
 #set(FFTW_DIR "/usr/local/lib/cmake/fftw3")
 #set(CMAKE_PREFIX_PATH "/usr/local/")
 #list(APPEND CMAKE_PREFIX_PATH "/usr/local/")
