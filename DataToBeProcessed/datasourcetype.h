@@ -10,7 +10,8 @@ public:
         File,
         Database,
         API,
-        Stream
+        Stream,
+        AlgorithmOutput
     };
 public:
     DataSourceType(SourceType type);

@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <memory>
+//#include "idatamanager.h"
 #include "FileData/datfiledata.h";
+#include "AlgorithmData/fftalgorithmdata.h"
 
-class DataManager : public QObject
+class DataManager: public QObject //: public IDataManager
 {
     Q_OBJECT
 public:
@@ -15,7 +17,9 @@ public:
 signals:
 
 private:
-    std::vector<std::unique_ptr<DatFileData>> datFilesData;
+    std::vector<std::unique_ptr<DatFileData>> datFilesData_;
+    std::vector<std::unique_ptr<FFTalgorithmData>> datFilesAlgRes_;
+
 
 };
 

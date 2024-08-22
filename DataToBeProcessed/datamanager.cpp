@@ -10,10 +10,10 @@ DataManager::DataManager(QObject *parent)
 
 void DataManager::addDatFile(std::unique_ptr<DatFileData> datFileData)
 {
-    datFilesData.push_back(std::move(datFileData));
+    datFilesData_.push_back(std::move(datFileData));
 }
 
 const std::vector<std::unique_ptr<DatFileData>>& DataManager::getDatFilesData()const
 {
-    return datFilesData;
+    return datFilesData_;
 }

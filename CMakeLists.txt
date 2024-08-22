@@ -48,6 +48,9 @@ file(GLOB_RECURSE PROJECT_SOURCES_CPP
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.cpp
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datamanager.cpp
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/AlgorithmData/ialgorithmdata.cpp
+    #${CMAKE_SOURCE_DIR}/DataToBeProcessed/idatamanager.cpp
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/AlgorithmData/fftalgorithmdata.cpp
     ${CMAKE_SOURCE_DIR}/UIComponents/ampenvelspectrumwidget.cpp
     #"${CMAKE_SOURCE_DIR}/FIleReader/*.cpp"
 )
@@ -58,6 +61,7 @@ file(GLOB_RECURSE PROJECT_HEADERS
     ${CMAKE_SOURCE_DIR}/Algorithms/fftalgorithm.h
     ${CMAKE_SOURCE_DIR}/mainwindow.h
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datamanager.h
+    #${CMAKE_SOURCE_DIR}/DataToBeProcessed/idatamanager.h
     ${CMAKE_SOURCE_DIR}/plotwidget.h
     ${CMAKE_SOURCE_DIR}/waterfallplot.h
     ${CMAKE_SOURCE_DIR}/Parser/iparser.h
@@ -68,6 +72,8 @@ file(GLOB_RECURSE PROJECT_HEADERS
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/datasourcetype.h
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/filedata.h
     ${CMAKE_SOURCE_DIR}/DataToBeProcessed/FileData/datfiledata.h
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/AlgorithmData/ialgorithmdata.h
+    ${CMAKE_SOURCE_DIR}/DataToBeProcessed/AlgorithmData/fftalgorithmdata.h
 
     ${CMAKE_SOURCE_DIR}/UIComponents/ampenvelspectrumwidget.h
 

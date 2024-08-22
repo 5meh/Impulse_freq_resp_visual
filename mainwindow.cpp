@@ -5,6 +5,7 @@
 #include "Parser/FileParser/datfileparser.h"
 #include "DataToBeProcessed/datamanager.h"
 #include "Algorithms/ialgorithm.h"
+#include "Algorithms/fftalgorithm.h"
 #include "DataToBeProcessed/FileData/datfiledata.h"
 #include <QtDataVisualization/Q3DSurface>
 #include <QVBoxLayout>
@@ -62,8 +63,9 @@ void MainWindow::openFiles()
             dataManager->addDatFile(std::move(datFileData));
         }
     }
+    dataManager->getDatFilesData();
 
-
+    tabs->show();
 }
 
 void MainWindow::createActions()

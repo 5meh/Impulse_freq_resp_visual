@@ -1,10 +1,18 @@
 #include "fftalgorithm.h"
 
-void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse)
+std::vector<double> FFTAlgorithm::process(const std::vector<double>& data, bool inverse)
 {
     int n = data.size();
     int logN = std::log2(n);
 
+    // Convert input data to complex numbers
+    std::vector<std::complex<double>> complexData(n);
+    for (int i = 0; i < n; ++i)
+    {
+        complexData[i] = std::complex<double>(data[i], 0.0);
+    }
+
+    // Bit-reversal permutation
     for (int i = 0; i < n; ++i)
     {
         int j = 0;
@@ -14,10 +22,11 @@ void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse
         }
         if (i < j)
         {
-            std::swap(data[i], data[j]);
+            std::swap(complexData[i], complexData[j]);
         }
     }
 
+    // FFT computation
     for (int s = 1; s <= logN; ++s)
     {
         int m = 1 << s;
@@ -31,24 +40,32 @@ void FFTAlgorithm::process(std::vector<std::complex<double>>& data, bool inverse
             {
                 int t = k + j;
                 int u = t + m / 2;
-                std::complex<double> t1 = w * data[u];
-                std::complex<double> t2 = data[t];
+                std::complex<double> t1 = w * complexData[u];
+                std::complex<double> t2 = complexData[t];
 
-                data[u] = t2 - t1;
-                data[t] = t2 + t1;
+                complexData[u] = t2 - t1;
+                complexData[t] = t2 + t1;
 
                 w *= wm;
             }
         }
     }
 
-    // Нормализация при обратном БПФ
+    // Normalize if inverse FFT
     if (inverse)
     {
         for (int i = 0; i < n; ++i)
         {
-            data[i] /= n;
+            complexData[i] /= n;
         }
     }
-    //return args;
+
+    // Extract the real part of the complex numbers
+    std::vector<double> result(n);
+    for (int i = 0; i < n; ++i)
+    {
+        result[i] = complexData[i].real();
+    }
+
+    return result;
 }
