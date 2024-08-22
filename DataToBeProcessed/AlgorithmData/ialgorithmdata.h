@@ -14,7 +14,7 @@ template<typename Data>
 class IAlgorithmData: public IData<Data, QFile, AlgorithmMetaInfo>
 {
 public:
-    IAlgorithmData(DataSourceType sourceType, QString& filePath, AlgorithmMetaInfo metaInfo);
+    IAlgorithmData(DataSourceType sourceType,const QString& filePath, AlgorithmMetaInfo metaInfo);
     virtual const QFile& getSource()const override;
     virtual AlgorithmMetaInfo getDataMetaInfo()const override;
 private:

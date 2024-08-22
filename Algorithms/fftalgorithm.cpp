@@ -1,71 +1,80 @@
 #include "fftalgorithm.h"
 
-std::vector<double> FFTAlgorithm::process(const std::vector<double>& data, bool inverse)
+std::vector<double> FFTAlgorithm::process(const std::vector<double>& measurements, bool inverse)
+{
+    int sampleRate = 106;//TODO:get from algorithm metadata, magic numbers - not comme il faut
+
+    std::vector<std::complex<double>> data(measurements.begin(), measurements.end());
+
+    iterativeFFT(data);
+
+    std::vector<double> spectrum = calculateAmplitudeSpectrum(data);
+    std::vector<double> envelope = calculateEnvelope(spectrum);
+    return envelope;
+}
+
+std::vector<double> FFTAlgorithm::calculateAmplitudeSpectrum(const std::vector<std::complex<double>>& data)
+{
+    std::vector<double> amplitudeSpectrum(data.size() / 2);
+    for (size_t i = 0; i < amplitudeSpectrum.size(); ++i)
+    {
+        amplitudeSpectrum[i] = std::abs(data[i]);
+    }
+    return amplitudeSpectrum;
+}
+
+std::vector<double> FFTAlgorithm::calculateEnvelope(const std::vector<double>& spectrum)
+{
+    std::vector<double> envelope(spectrum.size());
+    for (size_t i = 1; i < spectrum.size() - 1; ++i) {
+        if (spectrum[i] > spectrum[i - 1] && spectrum[i] > spectrum[i + 1]) {
+            envelope[i] = spectrum[i];
+        } else {
+            envelope[i] = (spectrum[i - 1] + spectrum[i + 1]) / 2.0;
+        }
+    }
+    envelope[0] = spectrum[0];
+    envelope[spectrum.size() - 1] = spectrum[spectrum.size() - 1];
+    return envelope;
+}
+
+void FFTAlgorithm::iterativeFFT(std::vector<std::complex<double>>& data)
 {
     int n = data.size();
-    int logN = std::log2(n);
+    int logN = log2(n);
 
-    // Convert input data to complex numbers
-    std::vector<std::complex<double>> complexData(n);
-    for (int i = 0; i < n; ++i)
+    // bit permutation
+    for (int i = 1, j = 0; i < n; ++i)
     {
-        complexData[i] = std::complex<double>(data[i], 0.0);
-    }
-
-    // Bit-reversal permutation
-    for (int i = 0; i < n; ++i)
-    {
-        int j = 0;
-        for (int k = 0; k < logN; ++k)
+        int bit = n >> 1;
+        while (j >= bit)
         {
-            j = (j << 1) | ((i >> k) & 1);
+            j -= bit;
+            bit >>= 1;
         }
+        j += bit;
         if (i < j)
         {
-            std::swap(complexData[i], complexData[j]);
+            std::swap(data[i], data[j]);
         }
     }
 
-    // FFT computation
-    for (int s = 1; s <= logN; ++s)
+    // FTP loop
+    for (int len = 2; len <= n; len <<= 1)
     {
-        int m = 1 << s;
-        double angle = (inverse ? 2 : -2) * M_PI / m;
-        std::complex<double> wm(std::cos(angle), std::sin(angle));
-
-        for (int k = 0; k < n; k += m)
+        double angle = -2 * M_PI / len;
+        std::complex<double> wlen(cos(angle), sin(angle));
+        for (int i = 0; i < n; i += len)
         {
-            std::complex<double> w(1.0, 0.0);
-            for (int j = 0; j < m / 2; ++j)
+            std::complex<double> w(1);
+            for (int j = 0; j < len / 2; ++j)
             {
-                int t = k + j;
-                int u = t + m / 2;
-                std::complex<double> t1 = w * complexData[u];
-                std::complex<double> t2 = complexData[t];
-
-                complexData[u] = t2 - t1;
-                complexData[t] = t2 + t1;
-
-                w *= wm;
+                std::complex<double> u = data[i + j];
+                std::complex<double> v = data[i + j + len / 2] * w;
+                data[i + j] = u + v;
+                data[i + j + len / 2] = u - v;
+                w *= wlen;
             }
         }
     }
-
-    // Normalize if inverse FFT
-    if (inverse)
-    {
-        for (int i = 0; i < n; ++i)
-        {
-            complexData[i] /= n;
-        }
-    }
-
-    // Extract the real part of the complex numbers
-    std::vector<double> result(n);
-    for (int i = 0; i < n; ++i)
-    {
-        result[i] = complexData[i].real();
-    }
-
-    return result;
 }

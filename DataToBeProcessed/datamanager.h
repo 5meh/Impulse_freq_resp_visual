@@ -13,12 +13,16 @@ class DataManager: public QObject //: public IDataManager
 public:
     explicit DataManager(QObject *parent = nullptr);
     void addDatFile(std::unique_ptr<DatFileData> datFileData);
+    void addAlgorithmResults(std::unique_ptr<FFTalgorithmData> algResData);
+
     const std::vector<std::unique_ptr<DatFileData>>& getDatFilesData()const;
+    const std::vector<std::unique_ptr<FFTalgorithmData>>& getFFTAlgorithmResults()const;
+
 signals:
 
 private:
     std::vector<std::unique_ptr<DatFileData>> datFilesData_;
-    std::vector<std::unique_ptr<FFTalgorithmData>> datFilesAlgRes_;
+    std::vector<std::unique_ptr<FFTalgorithmData>> fftAlgRes_;
 
 
 };

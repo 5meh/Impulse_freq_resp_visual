@@ -33,7 +33,7 @@ private:
 
     QTabWidget* tabs;
     AmpEnvelSpectrumWIdget* ampEnvelScetr;
-    DataManager* dataManager;
+    DataManager* dataManager_;
     //IAlgorithm* algorithm;
     //IParser* parser;
 };

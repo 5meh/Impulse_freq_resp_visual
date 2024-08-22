@@ -22,11 +22,14 @@ public:
 
 signals:
 public slots:
-    void setSeries(const std::vector<double>& values);
+    void setSeries(const std::vector<double>& values);//TODO:mb make variadic function
+    void setChartCaption(QString caption);
 private:
     QtCharts::QChart* chart;
     QtCharts::QChartView* chartView;
     QtCharts::QLineSeries* series;
+    QtCharts::QValueAxis *axisX;
+    QtCharts::QValueAxis *axisY;
 
     QVBoxLayout* chartLayout;
     QVBoxLayout* comboLayout;

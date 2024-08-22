@@ -1,10 +1,10 @@
 #include "ialgorithmdata.h"
 
 template<typename Data>
-IAlgorithmData<Data>::IAlgorithmData(DataSourceType sourceType, QString& filePath, AlgorithmMetaInfo metaInfo):
-     IData<Data, QFile, AlgorithmMetaInfo>(sourceType),
-     source_(filePath),
-     algMetaInfo_(metaInfo)
+IAlgorithmData<Data>::IAlgorithmData(DataSourceType sourceType, const QString& filePath, AlgorithmMetaInfo metaInfo):
+    IData<Data, QFile, AlgorithmMetaInfo>(sourceType),
+    source_(filePath),
+    algMetaInfo_(metaInfo)
 
 {
 

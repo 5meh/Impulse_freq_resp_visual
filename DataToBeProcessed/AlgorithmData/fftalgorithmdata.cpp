@@ -1,6 +1,6 @@
 #include "fftalgorithmdata.h"
 
-FFTalgorithmData::FFTalgorithmData(DataSourceType sourceType, QString& filePath, std::vector<double> data, AlgorithmMetaInfo algMetaInfo):
+FFTalgorithmData::FFTalgorithmData(DataSourceType sourceType, const QString& filePath, std::vector<double> data, AlgorithmMetaInfo algMetaInfo):
     IAlgorithmData<std::vector<double>>(sourceType, filePath,algMetaInfo),
     data_(data)
 {

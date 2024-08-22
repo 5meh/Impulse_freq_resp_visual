@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     createMenus();
     setGeometry(200,200,1000,600);
     tabs->hide();
-    dataManager = new DataManager(this);//TODO:should i pass this here
+    dataManager_ = new DataManager(this);//TODO:should i pass this here
 }
 
 void MainWindow::openFiles()
@@ -60,11 +60,17 @@ void MainWindow::openFiles()
         {
             auto parsedData = DatFileParser().parse(filePath);
             auto datFileData = std::make_unique<DatFileData>(DataSourceType::SourceType::File, filePath, std::move(parsedData));
-            dataManager->addDatFile(std::move(datFileData));
+            dataManager_->addDatFile(std::move(datFileData));
         }
     }
-    dataManager->getDatFilesData();
+    auto data = dataManager_->getDatFilesData().front()->getData();
 
+
+    auto envelop = new FFTalgorithmData(DataSourceType::SourceType::AlgorithmOutput,{},data,AlgorithmMetaInfo{});
+    std::unique_ptr<FFTalgorithmData> envelopPTr(envelop);
+    dataManager_->addAlgorithmResults(std::move(envelopPTr));
+    const auto& fftResults = dataManager_->getFFTAlgorithmResults().front()->getData();
+    ampEnvelScetr->setSeries(fftResults);
     tabs->show();
 }
 
